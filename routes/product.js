@@ -32,8 +32,8 @@ router.post("/", verifyTokenAndAdmin, async (req, res)=>{
         price : price
      })
      try {
-       saveProduct = await newProduct.save()
-       return res.status(201).json({"Success": true, saveProduct})   
+       const saveProduct = await newProduct.save()
+       return res.status(200).json({"Success": true, saveProduct})   
 
      } catch (error) {
         return res.status(400).json(error) 
@@ -41,6 +41,19 @@ router.post("/", verifyTokenAndAdmin, async (req, res)=>{
     
 
     
+})
+
+router.put("/:id", verifyTokenAndAdmin, async(req, res) =>{
+
+  try {
+    const editproduct = await Product.findByIdAndUpdate(req.params.id, {$set:req.body}, {new:true})
+  return res.status(200).json({"Success": true, editproduct})
+
+  } catch (error) {
+    return res.status(400).json({"success": false, error})
+  }
+  
+
 })
 
 
