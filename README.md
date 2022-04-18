@@ -10,10 +10,11 @@ Backend node js project
 ## Installation
 
 ```bash
- npm install or yarn
+ npm install 
 ```
 
 ```bash
 npm start
 ```
-
+## License
+Free use
