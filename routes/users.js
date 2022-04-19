@@ -8,10 +8,10 @@ const {verifyToken,verifyTokenAndAuthorization,verifyTokenAndAdmin} = require(".
 
     try {
       const user = await User.findById(req.params.id);
-      res.status(200).json(user);
+      return res.status(200).json(user);
       
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   });
   
@@ -24,10 +24,10 @@ const {verifyToken,verifyTokenAndAuthorization,verifyTokenAndAdmin} = require(".
       const users = query
         ? await User.find().sort({ _id: -1 }).limit(5)
         : await User.find();
-      res.status(200).json(users);
+        return  res.status(200).json(users);
     } catch (err) {
      
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   });
   
@@ -52,9 +52,9 @@ const {verifyToken,verifyTokenAndAuthorization,verifyTokenAndAdmin} = require(".
           },
         },
       ]);
-      res.status(200).json(data)
+      return res.status(200).json(data)
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   });
 
