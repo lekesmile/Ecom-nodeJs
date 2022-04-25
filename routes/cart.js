@@ -81,7 +81,7 @@ router.put("/:id", verifyTokenAndAdmin, async(req, res) =>{
  router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     await Cart.findByIdAndDelete(req.params.id);
-    res.status(200).json({Success: true, "Cart has been deleted..."});
+    res.status(200).json({Success: true, Message: "Cart has been deleted..."});
   } catch (err) {
     res.status(500).json(err);
   }
