@@ -1,14 +1,20 @@
 const express = require('express')
 const app = express()
 const router = express.Router()
+const Order = require('../models/Order')
+const {verifyToken,
+    verifyTokenAndAuthorization,
+    verifyTokenAndAdmin} = require("../middleware/auth_rights");
 
-router.get("/", (res, req) => {
-    console.log("Hello test")
+
+router.get("/", verifyTokenAndAdmin, async (res, req) => {
+    const getAllOrders = await Order.find({})
+    res.status(200).json({success: true, getAllOrders})
+    
 })
 
-router.post("/", (res, req)=>{
-const username = req.body.username
-console.log(username)
+router.post("/", verifyToken, (res, req)=>{
+
     
 })
 
